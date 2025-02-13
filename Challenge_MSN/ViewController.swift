@@ -9,13 +9,15 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var statusImage: UIImageView!
+    @IBOutlet weak var buttonStatus: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     let mockContacts: [Contact] = [
         Contact(profileImage: "profile1", username: "Alice", status: "Disponível", description: "Seja a mudança que você quer ver no mundo 🌎"),
         Contact(profileImage: "profile2", username: "Bob", status: "Ocupado", description: "Trabalhando... Não incomode 🚀"),
         Contact(profileImage: "profile3", username: "Charlie", status: "Ausente", description: "No mundo da lua 🌙"),
-        Contact(profileImage: "profile4", username: "David", status: "Trabalhando", description: "Codando até tarde 🖥️"),
+        Contact(profileImage: "profile4", username: "David", status: "Ocupado", description: "Codando até tarde 🖥️"),
         Contact(profileImage: "profile5", username: "Eve", status: "Offline", description: "Vendo séries 🎬"),
         Contact(profileImage: "profile6", username: "Frank", status: "Disponível", description: "Quem quer jogar alguma coisa? 🎮"),
         Contact(profileImage: "profile7", username: "Grace", status: "Ocupado", description: "Apenas vivendo um dia de cada vez 🍃"),
@@ -28,18 +30,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if tableView == nil {
-            print("⚠️ Erro: tableView não está conectada no Storyboard/XIB.")
-        } else {
-            print("✅ tableView conectada corretamente.")
-        }
-
         tableView.delegate = self
         tableView.dataSource = self
         
         let xib = UINib(nibName: "ContactsTableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "myID")
         // Do any additional setup after loading the view.
+        
+        configureStatusMenu()
     }
     
     
@@ -60,6 +58,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.statusLabelView.text = contact.status
             cell.dailyMessageLabel.text = contact.description
             cell.profileImageView.image = UIImage(named: contact.profileImage)
+            
+            cell.statusLabelViewConfig(status: contact.status)
         }
         
         return cell
@@ -83,5 +83,50 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    func configureStatusMenu() {
+        let onlineAction = UIAction(title: "Online", image: UIImage(named: "iconMSNonline")) { _ in
+            self.updateStatus(to: "Online")
+        }
+        
+        let busyAction = UIAction(title: "Ausente", image: UIImage(named: "iconMSNbusy")) { _ in
+            self.updateStatus(to: "Ausente")
+        }
+        
+        let dndAction = UIAction(title: "Ocupado", image: UIImage(named: "iconMSNdonotdisturb")) { _ in
+            self.updateStatus(to: "Ocupado")
+        }
+        
+        let offlineAction = UIAction(title: "Offline", image: UIImage(named: "iconMSNoffline")) { _ in
+            self.updateStatus(to: "Offline")
+        }
+        
+        let statusMenu = UIMenu(title: "", children: [onlineAction, busyAction, dndAction, offlineAction])
+        
+        buttonStatus.menu = statusMenu
+        buttonStatus.showsMenuAsPrimaryAction = true // Faz o botão abrir o menu diretamente
+    }
+    
+    func updateStatus(to status: String) {
+        
+        func statusLabelViewConfig(status: String) {
+            switch status {
+            case "Online":
+                statusImage.image = UIImage(named: "iconMSNonline")
+            case "Ausente":
+                statusImage.image = UIImage(named: "iconMSNbusy")
+            case "Ocupado":
+                statusImage.image = UIImage(named: "iconMSNdonotdisturb")
+            case "Offline":
+                statusImage.image = UIImage(named: "iconMSNoffline")
+            default:
+                break
+            }
+            
+        }
+
+        print("Status atualizado para: \(status)")
+        buttonStatus.setTitle(status, for: .normal) // Atualiza o título do botão com o status selecionado
+        statusLabelViewConfig(status: status)
+    }
 }
 

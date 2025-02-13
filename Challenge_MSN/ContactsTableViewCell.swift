@@ -17,6 +17,7 @@ class ContactsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,4 +26,23 @@ class ContactsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func statusLabelViewConfig(status: String) {
+        switch status {
+        case "Disponível":
+            statusImageView.image = UIImage(named: "iconMSNonline")
+        case "Ausente":
+            statusImageView.image = UIImage(named: "iconMSNbusy")
+        case "Ocupado":
+            statusImageView.image = UIImage(named: "iconMSNdonotdisturb")
+        case "Offline":
+            statusImageView.image = UIImage(named: "iconMSNoffline")
+        default:
+            break
+        }
+        
+    }
+    
 }
+
+
+
