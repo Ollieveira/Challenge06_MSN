@@ -10,14 +10,13 @@ import UIKit
 class ContactsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var namelabel: UILabel!
-    
     @IBOutlet weak var statusLabelView: UILabel!
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var dailyMessageLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -17,8 +17,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZ5-l1-ruz">
-                        <rect key="frame" x="74" y="7.9999999999999982" width="81" height="20.333333333333329"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mario" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZ5-l1-ruz">
+                        <rect key="frame" x="74" y="8" width="43" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -31,26 +31,26 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CeK-y3-UeR">
-                        <rect key="frame" x="163" y="10.666666666666664" width="15" height="15"/>
+                        <rect key="frame" x="125" y="11" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="Itv-aH-Kzk"/>
                             <constraint firstAttribute="height" constant="15" id="he1-je-6fn"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAF-uJ-zhi">
-                        <rect key="frame" x="186" y="10.333333333333336" width="33" height="15.666666666666664"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAF-uJ-zhi">
+                        <rect key="frame" x="148" y="10.666666666666664" width="39" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" systemColor="secondaryLabelColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalCompressionResistancePriority="749" text="sdjkfhaskfhasdhfjsahfkjsdafjkashfkasjdhfjskahfksahfjashkfshadkfhdsa" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsU-1w-EZX">
-                        <rect key="frame" x="74.000000000000014" y="28.333333333333332" width="212.33333333333337" height="34.666666666666671"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Olá, estou usando o MSN!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsU-1w-EZX">
+                        <rect key="frame" x="74.000000000000014" y="29" width="157.33333333333337" height="34"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" systemColor="secondaryLabelColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" image="chevron.forward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Lo2-x6-TeO">
-                        <rect key="frame" x="294.33333333333331" y="27.666666666666671" width="17.666666666666686" height="11.333333333333329"/>
+                        <rect key="frame" x="239.33333333333334" y="27.666666666666671" width="72.666666666666657" height="11.333333333333329"/>
                         <color key="tintColor" systemColor="secondaryLabelColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="7xp-Gs-yA4"/>
@@ -78,7 +78,6 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dailyMessageLabel" destination="zsU-1w-EZX" id="KoQ-iv-jAL"/>
-                <outlet property="mylabel" destination="BZ5-l1-ruz" id="ecP-fL-ZTf"/>
                 <outlet property="namelabel" destination="BZ5-l1-ruz" id="zH5-td-YWI"/>
                 <outlet property="profileImageView" destination="uxc-aM-RZT" id="FGx-4r-nSm"/>
                 <outlet property="statusImageView" destination="CeK-y3-UeR" id="63N-8H-uWd"/>
