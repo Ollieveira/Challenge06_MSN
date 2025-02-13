@@ -64,5 +64,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "chat", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let selectedIndexPath = tableView.indexPathForSelectedRow else {
+            print("Nenhuma célula selecionada")
+            return
+        }
+        
+        if let destination = segue.destination as? ChatViewController {
+            destination.name = mockContacts[selectedIndexPath.row].username
+        } else {
+            print("Destino desconhecido para o segue \(segue.identifier ?? "?")!")
+        }
+        
+    }
+    
 }
 
