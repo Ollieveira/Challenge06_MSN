@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var userProfile: UIImageView!
     @IBOutlet weak var statusImage: UIImageView!
     @IBOutlet weak var buttonStatus: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -38,6 +39,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view.
         
         configureStatusMenu()
+        
+        userProfile.image = UIImage(named: "userprofile")
+        userProfile.layer.cornerRadius = 20
     }
     
     
