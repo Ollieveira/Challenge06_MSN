@@ -44,10 +44,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         userProfile.layer.cornerRadius = 20
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
+            super.viewWillAppear(animated)
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            deselectSelectedRow()
+        }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mockContacts.count
@@ -55,6 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myID", for: indexPath)
+        
         let contact = mockContacts[indexPath.row]
         
         if let cell = cell as? ContactsTableViewCell {
@@ -84,6 +86,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else {
             print("Destino desconhecido para o segue \(segue.identifier ?? "?")!")
         }
+        
+        guard let selectedIndexPath = tableView.indexPathForSelectedRow else {
+            print("Nenhuma célula selecionada")
+            return
+        }
+
+        if let destination = segue.destination as? ChatViewController {
+            let contact = mockContacts[selectedIndexPath.row]
+            
+            destination.name = contact.username
+            destination.status = contact.status
+            destination.profileImage = UIImage(named: contact.profileImage)
+        } else {
+            print("Destino desconhecido para o segue \(segue.identifier ?? "?")!")
+        }
+
         
     }
     
@@ -132,5 +150,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         buttonStatus.setTitle(status, for: .normal) // Atualiza o título do botão com o status selecionado
         statusLabelViewConfig(status: status)
     }
+    
+    private func deselectSelectedRow() {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                tableView.deselectRow(at: selectedIndexPath, animated: true)
+            }
+        }
+    
+    
+
 }
 

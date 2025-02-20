@@ -128,6 +128,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kHS-5H-i1J">
+                                <rect key="frame" x="-2" y="103" width="393" height="643"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="709" id="4j4-9v-dbW"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9R3-mo-E7c"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -136,13 +143,12 @@
                             <constraint firstItem="Pbb-wq-jK0" firstAttribute="leading" secondItem="9R3-mo-E7c" secondAttribute="leading" constant="16" id="GkP-qk-pUL"/>
                             <constraint firstItem="9R3-mo-E7c" firstAttribute="trailing" secondItem="Pbb-wq-jK0" secondAttribute="trailing" constant="16" id="O4j-PS-OJf"/>
                             <constraint firstItem="9R3-mo-E7c" firstAttribute="bottom" secondItem="Pbb-wq-jK0" secondAttribute="bottom" constant="16" id="boW-Si-RKW"/>
+                            <constraint firstItem="Pbb-wq-jK0" firstAttribute="top" secondItem="kHS-5H-i1J" secondAttribute="bottom" constant="22" id="lqc-7f-a0I"/>
                             <constraint firstItem="bWm-iD-fbq" firstAttribute="leading" secondItem="bzV-ni-fTw" secondAttribute="leading" constant="32" id="uEl-Ar-Jfm"/>
+                            <constraint firstItem="kHS-5H-i1J" firstAttribute="top" secondItem="bzV-ni-fTw" secondAttribute="top" constant="103" id="wZH-cm-KXD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="D6u-xe-UEB"/>
-                    <connections>
-                        <outlet property="chatUsername" destination="bWm-iD-fbq" id="58z-gW-8xk"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fv-7V-kBN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -170,7 +176,7 @@
     <resources>
         <image name="film.stack" catalog="system" width="126" height="128"/>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

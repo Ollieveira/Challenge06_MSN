@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ChatHeadingView" customModule="Challenge_MSN" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="394" height="76"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -80,6 +80,14 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qnu-St-NGq" secondAttribute="trailing" constant="20" id="xPo-5g-05J"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backButton" destination="zLn-vJ-RXD" id="mGd-sg-bDt"/>
+                <outlet property="notificationIcon" destination="qnu-St-NGq" id="zWy-h3-96K"/>
+                <outlet property="profileImageView" destination="j2w-IC-g58" id="xVz-wr-AUk"/>
+                <outlet property="statusImageView" destination="rxF-DN-rUo" id="N6P-Ub-s7g"/>
+                <outlet property="statusLabel" destination="jiT-DM-Tcu" id="Quy-rm-xjr"/>
+                <outlet property="usernameLabel" destination="jOT-gg-Xsg" id="bIW-1w-Jzo"/>
+            </connections>
             <point key="canvasLocation" x="18.320610687022899" y="-253.52112676056339"/>
         </view>
     </objects>
@@ -87,7 +95,7 @@
         <image name="bell.and.waves.left.and.right.fill" catalog="system" width="128" height="77"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
