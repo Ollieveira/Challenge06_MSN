@@ -161,14 +161,15 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             // Constraints do TextField
             messageTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            messageTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            messageTextField.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -8),
+            textFieldBottomConstraint,
             messageTextField.heightAnchor.constraint(equalToConstant: 40),
 
             // Constraints do botão de enviar
-            sendButton.leadingAnchor.constraint(equalTo: messageTextField.trailingAnchor, constant: 12), // Espaço maior
             sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            sendButton.widthAnchor.constraint(equalToConstant: 70),
             sendButton.centerYAnchor.constraint(equalTo: messageTextField.centerYAnchor),
-            sendButton.widthAnchor.constraint(equalToConstant: 70)
+            sendButtonBottomConstraint
         ])
     }
 

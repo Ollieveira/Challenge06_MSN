@@ -44,6 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         userProfile.image = UIImage(named: "userprofile")
         userProfile.layer.cornerRadius = 20
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -158,8 +159,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 tableView.deselectRow(at: selectedIndexPath, animated: true)
             }
         }
-    
-    
-
 }
 
