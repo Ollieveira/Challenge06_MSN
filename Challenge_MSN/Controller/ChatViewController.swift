@@ -11,6 +11,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private var messages: [Message] = []
     
+    private var textFieldBottomConstraint: NSLayoutConstraint!
+    private var sendButtonBottomConstraint: NSLayoutConstraint!
+    
     // Criando os elementos da interface via código
     private let tableView: UITableView = {
         let table = UITableView()
@@ -22,14 +25,23 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private let messageTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Digite uma mensagem..."
-        textField.borderStyle = .roundedRect
+        textField.backgroundColor = UIColor(white: 0.95, alpha: 1) // Cinza claro
+        textField.layer.cornerRadius = 20
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Adicionando espaçamento interno para o texto não colar na borda
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 40))
+        textField.leftViewMode = .always
+        
         return textField
     }()
-    
+
     private let sendButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Enviar", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -57,6 +69,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
         
+        // Observadores para quando o teclado aparece e desaparece
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+        overrideUserInterfaceStyle = .light
+
         loadViewFromNib()
     }
     
@@ -91,6 +109,27 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         headerView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardFrame.height
+            
+            UIView.animate(withDuration: 0.3) {
+                self.textFieldBottomConstraint.constant = -keyboardHeight + self.view.safeAreaInsets.bottom
+                self.sendButtonBottomConstraint.constant = -keyboardHeight + self.view.safeAreaInsets.bottom
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.3) {
+            self.textFieldBottomConstraint.constant = -8
+            self.sendButtonBottomConstraint.constant = -8
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
@@ -110,8 +149,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     private func setupConstraints() {
+        textFieldBottomConstraint = messageTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+        sendButtonBottomConstraint = sendButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+
         NSLayoutConstraint.activate([
-            // Constraints da tabela (ocupa toda a tela, exceto a parte inferior)
+            // Constraints da tabela (mantém a área da tableView fixa)
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -123,12 +165,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             messageTextField.heightAnchor.constraint(equalToConstant: 40),
 
             // Constraints do botão de enviar
-            sendButton.leadingAnchor.constraint(equalTo: messageTextField.trailingAnchor, constant: 8),
+            sendButton.leadingAnchor.constraint(equalTo: messageTextField.trailingAnchor, constant: 12), // Espaço maior
             sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             sendButton.centerYAnchor.constraint(equalTo: messageTextField.centerYAnchor),
             sendButton.widthAnchor.constraint(equalToConstant: 70)
         ])
     }
+
 
     // MARK: - Métodos do TableView
 
@@ -169,6 +212,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
-
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 

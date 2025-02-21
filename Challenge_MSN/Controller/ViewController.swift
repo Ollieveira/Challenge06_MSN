@@ -34,6 +34,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         
+        overrideUserInterfaceStyle = .light
+        
         let xib = UINib(nibName: "ContactsTableViewCell", bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: "myID")
         // Do any additional setup after loading the view.
