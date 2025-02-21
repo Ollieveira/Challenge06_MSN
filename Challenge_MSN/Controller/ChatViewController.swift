@@ -114,8 +114,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let keyboardHeight = keyboardFrame.height
             
             UIView.animate(withDuration: 0.3) {
-                self.textFieldBottomConstraint.constant = -keyboardHeight + self.view.safeAreaInsets.bottom
-                self.sendButtonBottomConstraint.constant = -keyboardHeight + self.view.safeAreaInsets.bottom
+                self.textFieldBottomConstraint.constant = -keyboardHeight + self.view.safeAreaInsets.bottom - 8
+                self.sendButtonBottomConstraint.constant = -keyboardHeight + self.view.safeAreaInsets.bottom - 8
                 self.view.layoutIfNeeded()
             }
         }
